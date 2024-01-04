@@ -23,6 +23,6 @@ There came the idea of this API. I have decided to make this project open source
  - Read [CONTRIBUTING.md]() for guidelines.
 
 # TO_DO 
- [] Handle errors with better response
- [] Add data in existing language(s) 
- [] Add data for more languages
+ - [] Handle errors with better response
+ - [] Add data in existing language(s) 
+ - [] Add data for more languages
