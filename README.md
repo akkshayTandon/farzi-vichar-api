@@ -9,7 +9,7 @@ There came the idea of this API. I have decided to make this project open source
  - The method(s) you can use is only `GET`.
  - The API is structured in a way that you will need to provide a language to the route, otherwise you will receive an error.
  - The route is such : `https://farzi-vichar-api.vercel.app/language/${language_name}`.
- - example: [access hindi data](https://farzi-vichar-api.vercel.app/language/hindi). Similarily you can access data for  other languages also.
+ - example: [access hindi data](https://farzi-vichar-api.vercel.app/language/hindi). Similarily you can access data for  other languages also
 
 # Structure
  - There are mainly three ways to access a language data:
