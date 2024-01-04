@@ -1,5 +1,11 @@
 /**
  - This is route.js, which defines all the api route endpoints one can access.
+ -  
+    case "your_languge_name":
+        filteredData = your_language_name(min, max);
+        break;
+          
+        // Repeat the above template for adding case statements for each language;
  */
 
 import express from "express";
