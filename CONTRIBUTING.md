@@ -143,7 +143,7 @@ const your_language_name = (min, max) => {
 
  - It uses a simple switch-case for returning the correct language data.
 
- - Inside `routes/route.js`, follow these steps and for more info [go to the file](routes\route.js) itslef:
+ - Inside `routes/route.js`, follow these steps and for more info [go to the file](routes/route.js) itslef:
    - first import the retirever function:
    ```bash
     import your_langauge_name from "../data_endpoints/your_langauge_name.js";
