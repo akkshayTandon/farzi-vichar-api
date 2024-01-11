@@ -9,6 +9,7 @@ import 'dotenv/config';
 import cors from "cors";
 
 import all from "./routes/route.js";
+import languages_array from "./languages.js";
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -20,6 +21,10 @@ app.use(cors({
 
 app.get('/', (req, res) => {
     res.send("Home , this is index, try giving a language to the route");
+});
+
+app.get("/language-list", (req, res) => {
+    res.send(languages_array);
 });
 
 app.use("/language", all);
