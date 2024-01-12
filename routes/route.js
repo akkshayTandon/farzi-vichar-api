@@ -21,7 +21,7 @@ const router = express.Router();
 let filteredData;
 
 router.get("/", (req, res) => {
-    res.send("please enter a language name")
+    res.send("please enter a language name");
 });
 
 router.get("/:language_name", (req, res) => {
@@ -30,7 +30,7 @@ router.get("/:language_name", (req, res) => {
     const { language_name } = req.params;
 
     const l = languages_array.filter((lang) => {
-        return language_name === lang;
+        return language_name.toLowerCase() === lang.toLowerCase();
     });
 
     if (!l.toString()) {
@@ -63,7 +63,7 @@ router.get("/:language_name/random", (req, res) => {
     const { language_name } = req.params;
 
     const l = languages_array.filter((lang) => {
-        return language_name === lang;
+        return language_name.toLowerCase() === lang.toLowerCase();
     });
 
     if (!l.toString()) {
