@@ -9,6 +9,9 @@
  */
 
 import express from "express";
+import path from "path";
+import fs from "fs";
+import { fileURLToPath } from 'url';
 import languages_array from "../languages.js";
 
 /* ADD YOUR LANGUAGE AS SHOWN BELOW */
@@ -17,11 +20,26 @@ import english from "../data_endpoints/english.js";
 
 // import your_langauge_name_in_lower_case from "../data_endpoints/your_langauge_name_in_lower_case.js";
 
+/*           ------ DO NOT CHANGE ANYTHING BELOW UNTIL ELSEWHERE SPECIFIED ------                 */
+
 const router = express.Router();
 let filteredData;
 
+// function to return the error page
+export function errorPage(response) {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    express().use(express.static(path.join(__dirname, "static")));
+    const htmlPath = path.join(__dirname, "../static/error-page", "ErrorPage.html");
+    const htmlContent = fs.readFileSync(htmlPath, 'utf8');
+
+    response.set('Content-Type', "text/html");
+    response.send(htmlContent);
+}
+
 router.get("/", (req, res) => {
-    res.send("please enter a language name");
+    // res.send("please enter a language name");
+    errorPage(res);
 });
 
 router.get("/:language_name", (req, res) => {
@@ -34,7 +52,8 @@ router.get("/:language_name", (req, res) => {
     });
 
     if (!l.toString()) {
-        res.send("language does not exists".toUpperCase());
+        // res.send("language does not exists".toUpperCase());
+        errorPage(res);
     } else {
         switch (l.toString()) {
             case "hindi":
@@ -48,7 +67,7 @@ router.get("/:language_name", (req, res) => {
                 filteredData = your_language_name(min, max);
                 break;
             */
-            // Repeat the above template for adding case statements for each language;
+            // TO-DO: Repeat the above template for adding case statements for each language; TRY NOT TO DELETE THE TEMPLATE.
             default:
                 break;
         }
@@ -67,7 +86,8 @@ router.get("/:language_name/random", (req, res) => {
     });
 
     if (!l.toString()) {
-        res.send("language does not exists".toUpperCase());
+        // res.send("language does not exists".toUpperCase());
+        errorPage(res);
     } else {
         switch (l.toString()) {
             case "hindi":
@@ -81,7 +101,7 @@ router.get("/:language_name/random", (req, res) => {
                 filteredData = your_language_name(min, max);
                 break;
             */
-            // Repeat the above template for adding case statements for each language;
+            // TO-DO: Repeat the above template for adding case statements for each language; TRY NOT TO DELETE THE TEMPLATE.
             default:
                 break;
         }
