@@ -20,9 +20,9 @@
     
      i) */:language_name* -> returns all of the data for the language if no range is provided.
     
-       - */:language_name?min=value&max=value* -> returns the data in the specified range of min and max. 
+    ii) */:language_name?min=value&max=value* -> returns the data in the specified range of min and max. 
 
-     ii) */:language_name/random* -> returns a single random data from the language specified. 
+    iii) */:language_name/random* -> returns a single random data from the language specified. 
      
   -  For contributing to this file, prefer reading the instructions in the file, but the brief is as follows:- <br>
   
@@ -30,7 +30,7 @@
         
         - `import your_langauge_name from "../data_endpoints/your_langauge_name.js";` <br>
         
-     3) add the case statement in switch-case in each each route as instructed in the file.
+     2) add the case statement in switch-case in each each route as instructed in the file.
        
  4) `languages.js` - contains an array of all the languages of which the data exists
      1) add your language name to the languages_array in lowercase.
@@ -172,8 +172,8 @@ const your_language_name = (min, max) => {
                 filteredData = your_language_name(min, max);
                 break;
    ```
-  - inside `router.get("/:language_name/random", ...)` in switch-case, add the following:
-    
+   - inside `router.get("/:language_name/random", ...)` in switch-case, add the following:
+     
     ```bash
      case "your_languge_name":
                 filteredData = your_language_name(min, max);
