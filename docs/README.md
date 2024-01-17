@@ -6,27 +6,31 @@
  Before you start contributing to any project it is important to understand the folder structure for that project.
  For this project, the details are as follows:
 
- 1) `data` - This folder contains the data related to all the languages. This is where the actual shayari and quotes reside. <br>
+ 1) `data` - This folder contains the data related to all the languages. This is where the actual shayari and quotes reside. 
  
-       1) for adding a new language make a new folder inside the `data` folder as `data/${Your_language_name}`. <br>
-       2) add the data file inside the folder as `data/${Your_language_name}/data.js`. <br>
-       3) NOTE: name the data file as 'data.js' only. <br>
+       1) for adding a new language make a new folder inside the `data` folder as `data/${Your_language_name}`. 
+       2) add the data file inside the folder as `data/${Your_language_name}/data.js`. 
+       3) NOTE: name the data file as 'data.js' only. 
        
  2) `data_endpoints` - This folder contains the retriever functions, i.e., it is used to access the required language data from the data folder. This folder has seperate files for each language. <br>
  
-     - for adding a retrieval file inside the folder, create file as `data_endpoints/${your_language_name.js}`. <br/>
+     - for adding a retrieval file inside the folder, create file as `data_endpoints/${your_language_name.js}`. 
      
  3) `routes` - This folder contains all the routes the API provides. It has a single file `route.js` which has all the routes, which are mainly: <br>
     
-     i) */:language_name* -> returns all of the data for the language if no range is provided. <br>
-         - */:language_name?min=value&max=value* -> returns the data in the specified range of min and max. <br>
+     i) */:language_name* -> returns all of the data for the language if no range is provided.
+    
+       - */:language_name?min=value&max=value* -> returns the data in the specified range of min and max. 
 
-     ii) */:language_name/random* -> returns a single random data from the language specified. <br>
+     ii) */:language_name/random* -> returns a single random data from the language specified. 
      
   -  For contributing to this file, prefer reading the instructions in the file, but the brief is as follows:- <br>
-     1) import the required retrieval file from the data_endpoints folder in route.js as: 
+  
+     1) import the required retrieval file from the data_endpoints folder in route.js as:
+        
         - `import your_langauge_name from "../data_endpoints/your_langauge_name.js";` <br>
-     2) add the case statement in switch-case in each each route as instructed in the file.
+        
+     3) add the case statement in switch-case in each each route as instructed in the file.
        
  4) `languages.js` - contains an array of all the languages of which the data exists
      1) add your language name to the languages_array in lowercase.
@@ -44,19 +48,19 @@
   git clone https://github.com/your_username/farzi-vichar-api
  ```
 
- 3. Run the following command to start your local server
+3. Run the following command to start your local server
 
   ```bash
   npm start
   ```
 
- 4. Create a working branch and start making your changes.
+4. Create a working branch and start making your changes.
 
  ```bash
    git checkout -b your-new-branch-name
  ```
 
- 5. Make changes locally.
+5. Make changes locally.
     - [Add your data](#adding-data)
     - [Add the retriever function](#adding-retriever-function)
     - [Add the Case Statements](#adding-case-statements-inside-route)
