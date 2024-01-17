@@ -1,4 +1,4 @@
-# Farzi Vichar API
+# [Farzi Vichar API](https://github.com/akkshayTandon/farzi-vichar-api)
 - Hi! My name is Akkshay Tandon. Apart from development, there is another side of mine.
 I started writing some shayari out of interest in my second year of college and without even realizing I wrote many of them, although not all of them are added in the API still.
 I even started a instagram page by the name [Farzi Vichar](https://www.instagram.com/farzivichar/).
