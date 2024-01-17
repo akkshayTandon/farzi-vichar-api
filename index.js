@@ -21,7 +21,7 @@ app.use(cors({
 }))
 
 app.get('/', (req, res) => {
-    res.send("Home , this is index, try giving a language to the route");
+    res.redirect("https://akkshaytandon.github.io/farzi-vichar-api/");
 });
 
 app.get("/language-list", (req, res) => {

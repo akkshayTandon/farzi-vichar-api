@@ -30,6 +30,7 @@ I even started a instagram page by the name [Farzi Vichar](https://www.instagram
     - or a range of data from the language provided
     - or a random data from the language provided
  - For accessing full data, use the route as : `https://farzi-vichar-api.vercel.app/language/${language_name}`
+ - For accessing data in a range, use the route as : `https://farzi-vichar-api.vercel.app/language/${language_name}?min=${min_value}&max=${max_value}`
  - For accessing a random data, use the route as : `https://farzi-vichar-api.vercel.app/language/${language_name}/random`
 
 # Contributing to the project
