@@ -37,6 +37,6 @@ I even started a instagram page by the name [Farzi Vichar](https://www.instagram
  - Read [CONTRIBUTING.md](/docs/README.md) for guidelines.
 
 # TO_DO 
- - [ ] Handle errors with better response
+ - [x] Handle errors with better response
  - [ ] Add data in existing language(s) 
  - [ ] Add data for more languages
