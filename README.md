@@ -5,7 +5,7 @@ I even started a instagram page by the name [Farzi Vichar](https://www.instagram
 
 - But there was something missing, and then a random thought came to my mind of combining both my technical and writing skills.There came the idea of this API. 
 
-- I have decided to make this project open source, so if you are getting started with open source or you just want to add more data, consider this repository to contribute. You will find more details related to contributing [here](CONTRIBUTING.md).
+- I have decided to make this project open source, so if you are getting started with open source or you just want to add more data, consider this repository to contribute. You will find more details related to contributing [here](/docs/README.md).
 
 # Implementations
  - This is the current list of implementations:
@@ -33,7 +33,7 @@ I even started a instagram page by the name [Farzi Vichar](https://www.instagram
  - For accessing a random data, use the route as : `https://farzi-vichar-api.vercel.app/language/${language_name}/random`
 
 # Contributing to the project
- - Read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+ - Read [CONTRIBUTING.md](/docs/README.md) for guidelines.
 
 # TO_DO 
  - [ ] Handle errors with better response
