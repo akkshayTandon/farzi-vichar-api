@@ -40,40 +40,40 @@
 ## Installation
  For installation and local setup, follow these steps:
 
- 1. Fork this repository.
+- Fork this repository.
 
- 2. Clone the forked repository.
+- Clone the forked repository.
 
- ```bash
+  ```bash
   git clone https://github.com/your_username/farzi-vichar-api
- ```
+  ```
 
-3. Run the following command to start your local server
+- Run the following command to start your local server
 
   ```bash
   npm start
   ```
 
-4. Create a working branch and start making your changes.
+- Create a working branch and start making your changes.
 
- ```bash
+  ```bash
    git checkout -b your-new-branch-name
- ```
+  ```
 
-5. Make changes locally.
+- Make changes locally.
     - [Add your data](#adding-data)
     - [Add the retriever function](#adding-retriever-function)
     - [Add the Case Statements](#adding-case-statements-inside-route)
 
-6. Commit your changes. Make sure to add a descriptive commit message.
+- Commit your changes. Make sure to add a descriptive commit message.
 
-```bash
- git commit -m "your_message"
-```
+  ```bash
+  git commit -m "your_message"
+  ```
 
-7. When you're finished with the changes, create a pull request, also known as a PR.
+- When you're finished with the changes, create a pull request, also known as a PR.
 
-8. **After the review and required changes, if any asked for, your PR will be merged.
+- **After the review and required changes, if any asked for, your PR will be merged.
 Congratulations 🎉🎉**
 
 ### Adding Data 
@@ -165,13 +165,15 @@ const your_language_name = (min, max) => {
    ```bash
     import your_langauge_name from "../data_endpoints/your_langauge_name.js";
    ```
-   - inside `router.get("/:language_name", ...)` in switch-case, add the following: 
+   - inside `router.get("/:language_name", ...)` in switch-case, add the following:
+     
    ```bash
      case "your_languge_name":
                 filteredData = your_language_name(min, max);
                 break;
    ```
   - inside `router.get("/:language_name/random", ...)` in switch-case, add the following:
+    
     ```bash
      case "your_languge_name":
                 filteredData = your_language_name(min, max);
