@@ -7,23 +7,25 @@
  For this project, the details are as follows:
 
  1) `data` - This folder contains the data related to all the languages. This is where the actual shayari and quotes reside. <br>
-     - for adding a new language make a new folder inside the `data` folder as `data/${Your_language_name}`. <br>
-     - add the data file inside the folder as `data/${Your_language_name}/data.js`. <br>
-     - NOTE: name the data file as 'data.js' only. <br>
+       1) for adding a new language make a new folder inside the `data` folder as `data/${Your_language_name}`. <br>
+       2) add the data file inside the folder as `data/${Your_language_name}/data.js`. <br>
+       3) NOTE: name the data file as 'data.js' only. <br>
  2) `data_endpoints` - This folder contains the retriever functions, i.e., it is used to access the required language data from the data folder. This folder has seperate files for each language. <br>
      - for adding a retrieval file inside the folder, create file as `data_endpoints/${your_language_name.js}`. <br/>
- 3) `routes` - This folder contains all the routes the API provides. It has a single file `route.js` which has all the routes, which are mainly: <br>
-     - */:language_name* -> returns all of the data for the language if no range is provided. <br>
-       
-       - */:language_name?min=value&max=value* -> returns the data in the specified range of min and max. <br>
+ 3) `routes` - This folder contains all the routes the API provides. It has a single file `route.js` which has all the routes, which are mainly: <br><br>
+     1) */:language_name* -> returns all of the data for the language if no range is provided. <br>
+         - */:language_name?min=value&max=value* -> returns the data in the specified range of min and max. <br>
 
-     - */:language_name/random* -> returns a single random data from the language specified. <br>
-  - For contributing to this file, prefer reading the instructions in the file, but the brief is as follows:-
-    - import the required retrieval file from the data_endpoints folder in route.js as: 
-      - `import your_langauge_name from "../data_endpoints/your_langauge_name.js";`
-    - add the case statement in switch-case in each each route as instructed in the file.
+     2) */:language_name/random* -> returns a single random data from the language specified. <br>
+     
+  -  For contributing to this file, prefer reading the instructions in the file, but the brief is as follows:-
+     1) import the required retrieval file from the data_endpoints folder in route.js as: 
+        - `import your_langauge_name from "../data_endpoints/your_langauge_name.js";`
+     2) add the case statement in switch-case in each each route as instructed in the file.
+       
  4) `languages.js` - contains an array of all the languages of which the data exists
-     - add your language name to the languages_array in lowercase. 
+     1) add your language name to the languages_array in lowercase.
+       
  5) `index.js` - the entry point to this project, **DO NOT CHANGE ANYTHING IN THIS FILE**.
 
 ## Installation
