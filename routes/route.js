@@ -8,7 +8,7 @@
         // Repeat the above template for adding case statements for each language;
  */
 
-import express from "express";
+import express, { text } from "express";
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from 'url';
@@ -18,6 +18,7 @@ import languages_array from "../languages.js";
 import hindi from "../data_endpoints/hindi.js";
 import english from "../data_endpoints/english.js";
 import { error } from "console";
+import { exit } from "process";
 
 // import your_langauge_name_in_lower_case from "../data_endpoints/your_langauge_name_in_lower_case.js";
 
@@ -33,9 +34,10 @@ export function errorPage(response) {
     // const filePath = path.join(__dirname, "../public", "ErrorPage.html");
     express().use(express.static(path.join(__dirname, "public")));
     const htmlPath = path.join(__dirname, "../public", "index.html");
-    const htmlContent = fs.readFileSync(htmlPath, 'utf8');
+    const htmlContent = fs.readFileSync(htmlPath, 'utf-8');
 
-    response.set('Content-Type', "text/html");
+    // response.set('Content-Type', "text/html");
+    response.type('html');
     response.send(htmlContent);
 }
 
@@ -45,6 +47,8 @@ router.get("/", (req, res) => {
     // const __dirname = path.dirname(__filename);
     // const filePath = path.join(__dirname, "../public", "index.html");
     // res.sendFile(filePath);
+    // res.type()
+    console.log("no language error");
     errorPage(res);
 });
 
@@ -63,6 +67,7 @@ router.get("/:language_name", (req, res) => {
         // const __dirname = path.dirname(__filename);
         // const filePath = path.join(__dirname, "../public", "index.html");
         // res.sendFile(filePath);
+        console.log("language error");
         errorPage(res);
     } else {
         switch (l.toString()) {
@@ -81,9 +86,9 @@ router.get("/:language_name", (req, res) => {
             default:
                 break;
         }
-    }
 
-    res.json(filteredData);
+        res.json(filteredData);
+    }
 })
 
 router.get("/:language_name/random", (req, res) => {
@@ -97,6 +102,7 @@ router.get("/:language_name/random", (req, res) => {
 
     if (!l.toString()) {
         // res.send("language does not exists".toUpperCase());
+        console.log("random language error");
         errorPage(res);
     } else {
         switch (l.toString()) {
@@ -115,9 +121,9 @@ router.get("/:language_name/random", (req, res) => {
             default:
                 break;
         }
-    }
 
-    res.json(filteredData[Math.floor(Math.random() * filteredData.length)]);
+        res.json(filteredData[Math.floor(Math.random() * filteredData.length)]);
+    }
 });
 
 export default router;
