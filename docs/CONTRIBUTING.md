@@ -37,26 +37,32 @@
   git clone https://github.com/your_username/farzi-vichar-api
  ```
 
- 3. Create a working branch and start making your changes.
+ 3. Run the following command to start your local server
+
+  ```bash
+  npm start
+  ```
+
+ 4. Create a working branch and start making your changes.
 
  ```bash
    git checkout -b your-new-branch-name
  ```
 
- 4. Make changes locally.
+ 5. Make changes locally.
     - [Add your data](#adding-data)
     - [Add the retriever function](#adding-retriever-function)
     - [Add the Case Statements](#adding-case-statements-inside-route)
 
-5. Commit your changes. Make sure to add a descriptive commit message.
+6. Commit your changes. Make sure to add a descriptive commit message.
 
 ```bash
  git commit -m "your_message"
 ```
 
-6. When you're finished with the changes, create a pull request, also known as a PR.
+7. When you're finished with the changes, create a pull request, also known as a PR.
 
-7. **After the review and required changes, if any asked for, your PR will be merged.
+8. **After the review and required changes, if any asked for, your PR will be merged.
 Congratulations 🎉🎉**
 
 ### Adding Data 

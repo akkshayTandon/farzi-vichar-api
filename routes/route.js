@@ -17,6 +17,7 @@ import languages_array from "../languages.js";
 /* ADD YOUR LANGUAGE AS SHOWN BELOW */
 import hindi from "../data_endpoints/hindi.js";
 import english from "../data_endpoints/english.js";
+import { error } from "console";
 
 // import your_langauge_name_in_lower_case from "../data_endpoints/your_langauge_name_in_lower_case.js";
 
@@ -29,8 +30,9 @@ let filteredData;
 export function errorPage(response) {
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
-    express().use(express.static(path.join(__dirname, "static")));
-    const htmlPath = path.join(__dirname, "../static/error-page", "ErrorPage.html");
+    // const filePath = path.join(__dirname, "../public", "ErrorPage.html");
+    express().use(express.static(path.join(__dirname, "public")));
+    const htmlPath = path.join(__dirname, "../public", "index.html");
     const htmlContent = fs.readFileSync(htmlPath, 'utf8');
 
     response.set('Content-Type', "text/html");
@@ -39,6 +41,10 @@ export function errorPage(response) {
 
 router.get("/", (req, res) => {
     // res.send("please enter a language name");
+    // const __filename = fileURLToPath(import.meta.url);
+    // const __dirname = path.dirname(__filename);
+    // const filePath = path.join(__dirname, "../public", "index.html");
+    // res.sendFile(filePath);
     errorPage(res);
 });
 
@@ -53,6 +59,10 @@ router.get("/:language_name", (req, res) => {
 
     if (!l.toString()) {
         // res.send("language does not exists".toUpperCase());
+        // const __filename = fileURLToPath(import.meta.url);
+        // const __dirname = path.dirname(__filename);
+        // const filePath = path.join(__dirname, "../public", "index.html");
+        // res.sendFile(filePath);
         errorPage(res);
     } else {
         switch (l.toString()) {
