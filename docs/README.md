@@ -18,11 +18,11 @@
      
  3) `routes` - This folder contains all the routes the API provides. It has a single file `route.js` which has all the routes, which are mainly: <br>
     
-     i) */:language_name* -> returns all of the data for the language if no range is provided.
+     1) */:language_name* -> returns all of the data for the language if no range is provided.
     
-       - */:language_name?min=value&max=value* -> returns the data in the specified range of min and max. 
+     2) */:language_name?min=value&max=value* -> returns the data in the specified range of min and max. 
 
-     ii) */:language_name/random* -> returns a single random data from the language specified. 
+     3) */:language_name/random* -> returns a single random data from the language specified. 
      
   -  For contributing to this file, prefer reading the instructions in the file, but the brief is as follows:- <br>
   
@@ -38,43 +38,43 @@
  5) `index.js` - the entry point to this project, **DO NOT CHANGE ANYTHING IN THIS FILE**.
 
 ## Installation
- For installation and local setup, follow these steps:
+  For installation and local setup, follow these steps:
 
- 1. Fork this repository.
+  1) Fork this repository.
 
- 2. Clone the forked repository.
-
- ```bash
-  git clone https://github.com/your_username/farzi-vichar-api
- ```
-
-3. Run the following command to start your local server
+  2) Clone the forked repository.
 
   ```bash
-  npm start
+   git clone https://github.com/your_username/farzi-vichar-api
   ```
 
-4. Create a working branch and start making your changes.
+ 3) Run the following command to start your local server
 
- ```bash
+   ```bash
+   npm start
+   ```
+
+ 4) Create a working branch and start making your changes.
+
+  ```bash
    git checkout -b your-new-branch-name
- ```
+  ```
 
-5. Make changes locally.
+ 5) Make changes locally.
     - [Add your data](#adding-data)
     - [Add the retriever function](#adding-retriever-function)
     - [Add the Case Statements](#adding-case-statements-inside-route)
 
-6. Commit your changes. Make sure to add a descriptive commit message.
+ 6) Commit your changes. Make sure to add a descriptive commit message.
 
-```bash
- git commit -m "your_message"
-```
+ ```bash
+  git commit -m "your_message"
+ ```
 
-7. When you're finished with the changes, create a pull request, also known as a PR.
+ 7) When you're finished with the changes, create a pull request, also known as a PR.
 
-8. **After the review and required changes, if any asked for, your PR will be merged.
-Congratulations 🎉🎉**
+ 8) **After the review and required changes, if any asked for, your PR will be merged.
+ Congratulations 🎉🎉**
 
 ### Adding Data 
 <hr>
