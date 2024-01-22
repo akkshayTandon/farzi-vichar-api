@@ -51,6 +51,7 @@
 - Run the following command to start your local server
 
   ```bash
+  npm install
   npm start
   ```
 
