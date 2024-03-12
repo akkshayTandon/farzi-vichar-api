@@ -22,7 +22,8 @@ const sqlite = verbose();
 
 app.use(cors({
     origin: "*",
-    methods: ['GET', 'POST']
+    methods: ['GET', 'POST'],
+    allowedHeaders: "*"
 }))
 
 app.get('/', (req, res) => {
