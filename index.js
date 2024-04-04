@@ -8,7 +8,6 @@
 import express from "express";
 import 'dotenv/config';
 import cors from "cors";
-import { user_data_array } from "./data/User/data.js";
 // import { sqlite3, verbose } from "sqlite3";
 import pkg from 'sqlite3';
 
@@ -43,8 +42,7 @@ app.get("/language-list", (req, res) => {
 });
 
 app.get("/user-data", (req, res) => {
-    const { sqlite3, verbose } = pkg;
-    const sqlite = verbose();
+
     function readDataFromDatabase(databaseFile, tableName) {
         return new Promise((resolve, reject) => {
             const db = new sqlite.Database(databaseFile, (err) => {
@@ -85,26 +83,6 @@ app.post("/add-data", express.json(), (req, res) => {
 
     const data = req.body;
 
-    let defaultResponseData = "Data added successfully!";
-    let duplicateFlag = false;
-
-    if (user_data_array.length === 0) {
-        user_data_array.push(data);
-    } else if (user_data_array.length > 0) {
-
-        for (let i = 0; i < user_data_array.length; i++) {
-            if ((user_data_array[i].author === data.author) || (user_data_array[i].content === data.content)) {
-                duplicateFlag = true;
-                break;
-            }
-        }
-
-        duplicateFlag ? defaultResponseData = "Duplicate data, already exists!" : user_data_array.push(data)
-    }
-
-    console.log(user_data_array)
-    const { sqlite3, verbose } = pkg;
-    const sqlite = verbose();
     function writeToDatabase() {
         const db = new sqlite.Database("./quotify.db", (err) => {
             if (err) {
@@ -112,41 +90,57 @@ app.post("/add-data", express.json(), (req, res) => {
                 return;
             }
             console.log("Connected to database");
+        });
 
-            const createTableQuery = `CREATE TABLE IF NOT EXISTS test_table (
+        const createTableQuery = `CREATE TABLE IF NOT EXISTS test_table (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
                 author TEXT,
-                content TEXT,
+                content TEXT UNIQUE,
                 UNIQUE (author, content)
               );`;
-            db.run(createTableQuery, (err) => {
-                if (err) {
-                    console.error("Error creating table: ", err.message);
-                    return;
-                }
-                const insertQuery = `INSERT INTO test_table(author, content) VALUES (?, ?)`;
-                user_data_array.forEach((object) => {
-                    const values = [object.author, object.content];
-                    db.run(insertQuery, ...values, (err) => {
-                        if (err) {
-                            console.error("Error inserting data", err.message);
-                        } else {
-                            console.log("Data inserted successfully");
-                        }
-                    });
+        const insertQuery = `INSERT INTO test_table(author, content) VALUES (?, ?)`;
+
+       
+        return new Promise((resolve, reject) => {
+            db.serialize(() => {
+
+                db.run(createTableQuery, (err) => {
+                    if (err) {
+                        console.error("Error creating table: ", err.message);
+                        reject(err)
+                    }
+                    console.log("created table");
                 });
+
+                db.run(insertQuery, ...[data.author, data.content], (err) => {
+                    if (err) {
+                        console.error("Error inserting data", err.message);
+                        resolve({ status: 409, message: `CONFLICT - It seems that the content already exists!!` });
+                    } else {
+                        console.log("Data inserted successfully")
+                        resolve({ status: 201, message: "done success" });
+                    }
+
+                });
+
             });
 
-            // Close the database connection
             db.close((err) => {
                 if (err) {
                     return console.error(err.message);
                 }
                 console.log("Close the database connection.");
             });
-        });
+
+        })
     }
-    writeToDatabase();
-    duplicateFlag ? res.status(409).send(defaultResponseData) : res.status(201).send(defaultResponseData);
+
+    writeToDatabase().then(data => {
+        console.log(data)
+        res.status(data.status).json(data.message);
+    }).catch(err => {
+        console.error(err)
+    });
 });
 
 app.use("/language", router);
