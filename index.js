@@ -80,7 +80,7 @@ app.get("/user-data", (req, res) => {
     // res.json(user_data_array);
 });
 
-app.post("/add-data", express.json(), (req, res) => {
+app.post("/add-data", express.json(), cors(), (req, res) => {
 
     const data = req.body;
 
