@@ -21,9 +21,11 @@ const { sqlite3, verbose } = pkg;
 const sqlite = verbose();
 
 app.use(cors({
-    origin: ["http://127.0.0.1:5500/","*"],
+    origin: ["http://127.0.0.1:5500/", "*"],
     methods: ['GET', 'POST']
 }))
+
+app.options("/add-data", cors());
 // app.use(cors())
 
 app.get('/', (req, res) => {
@@ -91,53 +93,46 @@ app.post("/add-data", express.json(), (req, res) => {
                 return;
             }
             console.log("Connected to database");
-        });
 
-        const createTableQuery = `CREATE TABLE IF NOT EXISTS test_table (
+            const createTableQuery = `CREATE TABLE IF NOT EXISTS test_table (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 author TEXT,
                 content TEXT UNIQUE,
                 UNIQUE (author, content)
               );`;
-        const insertQuery = `INSERT INTO test_table(author, content) VALUES (?, ?)`;
+            const insertQuery = `INSERT INTO test_table(author, content) VALUES (?, ?)`;
 
-       
-        return new Promise((resolve, reject) => {
-            db.serialize(() => {
 
-                db.run(createTableQuery, (err) => {
-                    if (err) {
-                        console.error("Error creating table: ", err.message);
-                        reject(err)
-                    }
-                    console.log("created table");
-                });
+            return new Promise((resolve, reject) => {
+                db.serialize(() => {
 
-                db.run(insertQuery, ...[data.author, data.content], (err) => {
-                    if (err) {
-                        console.error("Error inserting data", err.message);
-                        resolve({ status: 409, message: `CONFLICT - It seems that the content already exists!!` });
-                    } else {
-                        console.log("Data inserted successfully")
-                        resolve({ status: 201, message: "done success" });
-                    }
-                      // Close the database connection after executing queries
-                      db.close((err) => {
+                    db.run(createTableQuery, (err) => {
                         if (err) {
-                            return console.error(err.message);
+                            console.error("Error creating table: ", err.message);
+                            reject(err)
                         }
-                        console.log("Close the database connection.");
+                        console.log("created table");
                     });
+
+                    db.run(insertQuery, ...[data.author, data.content], (err) => {
+                        if (err) {
+                            console.error("Error inserting data", err.message);
+                            resolve({ status: 409, message: `CONFLICT - It seems that the content already exists!!` });
+                        } else {
+                            console.log("Data inserted successfully")
+                            resolve({ status: 201, message: "done success" });
+                        }
+                    });
+
                 });
 
+                db.close((err) => {
+                    if (err) {
+                        return console.error(err.message);
+                    }
+                    console.log("Close the database connection.");
+                });
             });
-
-            // db.close((err) => {
-            //     if (err) {
-            //         return console.error(err.message);
-            //     }
-            //     console.log("Close the database connection.");
-            // });
 
         });
     }
