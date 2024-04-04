@@ -21,7 +21,7 @@ const { sqlite3, verbose } = pkg;
 const sqlite = verbose();
 
 app.use(cors({
-    origin: "http://127.0.0.1:5500/test-3.html",
+    origin: ["http://127.0.0.1:5500/","*"],
     methods: ['GET', 'POST']
 }))
 // app.use(cors())
