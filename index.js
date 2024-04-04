@@ -83,66 +83,68 @@ app.get("/user-data", (req, res) => {
 });
 
 app.post("/add-data", express.json(), (req, res) => {
-
     const data = req.body;
 
     function writeToDatabase() {
-        const db = new sqlite.Database("./quotify.db", (err) => {
-            if (err) {
-                console.error("Error opening database:", err.message);
-                return;
-            }
-            console.log("Connected to database");
+        return new Promise((resolve, reject) => {
+            const db = new sqlite.Database("./quotify.db", (err) => {
+                if (err) {
+                    console.error("Error opening database:", err.message);
+                    reject(err);
+                    return;
+                }
 
-            const createTableQuery = `CREATE TABLE IF NOT EXISTS test_table (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                author TEXT,
-                content TEXT UNIQUE,
-                UNIQUE (author, content)
-              );`;
-            const insertQuery = `INSERT INTO test_table(author, content) VALUES (?, ?)`;
+                console.log("Connected to database");
 
+                const createTableQuery = `CREATE TABLE IF NOT EXISTS test_table (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    author TEXT,
+                    content TEXT UNIQUE,
+                    UNIQUE (author, content)
+                );`;
+                const insertQuery = `INSERT INTO test_table(author, content) VALUES (?, ?)`;
 
-            return new Promise((resolve, reject) => {
                 db.serialize(() => {
-
                     db.run(createTableQuery, (err) => {
                         if (err) {
                             console.error("Error creating table: ", err.message);
-                            reject(err)
+                            reject(err);
+                            return;
                         }
                         console.log("created table");
-                    });
 
-                    db.run(insertQuery, ...[data.author, data.content], (err) => {
-                        if (err) {
-                            console.error("Error inserting data", err.message);
-                            resolve({ status: 409, message: `CONFLICT - It seems that the content already exists!!` });
-                        } else {
-                            console.log("Data inserted successfully")
-                            resolve({ status: 201, message: "done success" });
-                        }
+                        db.run(insertQuery, [data.author, data.content], (err) => {
+                            if (err) {
+                                console.error("Error inserting data", err.message);
+                                resolve({ status: 409, message: `CONFLICT - It seems that the content already exists!!` });
+                            } else {
+                                console.log("Data inserted successfully");
+                                resolve({ status: 201, message: "done success" });
+                            }
+                        });
                     });
-
                 });
 
+                // Close the database connection after executing all queries
                 db.close((err) => {
                     if (err) {
-                        return console.error(err.message);
+                        console.error(err.message);
                     }
                     console.log("Close the database connection.");
                 });
             });
-
         });
     }
 
-    writeToDatabase().then(data => {
-        console.log(data)
-        res.status(data.status).json(data.message);
-    }).catch(err => {
-        console.error(err)
-    });
+    writeToDatabase()
+        .then((data) => {
+            console.log(data);
+            res.status(data.status).json(data.message);
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).json({ message: "Internal Server Error" });
+        });
 });
 
 app.use("/language", router);
