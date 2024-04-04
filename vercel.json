@@ -10,12 +10,11 @@
     {
       "src": "/(.*)",
       "dest": "index.js"
-    },
+    }
+  ],
+  "headers": [
     {
-      "src": "/add-data",
-      "methods": [
-        "POST"
-      ],
+      "source": "/add-data",
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
