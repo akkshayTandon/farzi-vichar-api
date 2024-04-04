@@ -20,11 +20,11 @@ const app = express();
 const { sqlite3, verbose } = pkg;
 const sqlite = verbose();
 
-// app.use(cors({
-//     origin: "*",
-//     methods: ['GET', 'POST']
-// }))
-app.use(cors())
+app.use(cors({
+    origin: "*",
+    methods: ['GET', 'POST']
+}))
+// app.use(cors())
 
 app.get('/', (req, res) => {
 

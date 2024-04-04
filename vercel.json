@@ -12,15 +12,13 @@
       "dest": "index.js"
     }
   ],
-  "headers": [
-    {
-      "source": "/add-data",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        }
-      ]
-    }
-  ]
+  "headers": {
+    "source": "/add-data",
+    "headers": [
+      {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      }
+    ]
+  }
 }
