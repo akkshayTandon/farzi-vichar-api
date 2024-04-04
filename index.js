@@ -80,7 +80,7 @@ app.get("/user-data", (req, res) => {
     // res.json(user_data_array);
 });
 
-app.post("/add-data", express.json(), cors(), (req, res) => {
+app.post("/add-data", express.json(), (req, res) => {
 
     const data = req.body;
 
@@ -121,19 +121,25 @@ app.post("/add-data", express.json(), cors(), (req, res) => {
                         console.log("Data inserted successfully")
                         resolve({ status: 201, message: "done success" });
                     }
-
+                      // Close the database connection after executing queries
+                      db.close((err) => {
+                        if (err) {
+                            return console.error(err.message);
+                        }
+                        console.log("Close the database connection.");
+                    });
                 });
 
             });
 
-            db.close((err) => {
-                if (err) {
-                    return console.error(err.message);
-                }
-                console.log("Close the database connection.");
-            });
+            // db.close((err) => {
+            //     if (err) {
+            //         return console.error(err.message);
+            //     }
+            //     console.log("Close the database connection.");
+            // });
 
-        })
+        });
     }
 
     writeToDatabase().then(data => {
