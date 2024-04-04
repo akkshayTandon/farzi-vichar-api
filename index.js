@@ -24,8 +24,6 @@ app.use(cors({
     origin: ["http://127.0.0.1:5500/", "*"],
     methods: ['GET', 'POST']
 }))
-
-app.options("/add-data", cors());
 // app.use(cors())
 
 app.get('/', (req, res) => {
@@ -82,6 +80,8 @@ app.get("/user-data", (req, res) => {
     // res.json(user_data_array);
 });
 
+app.options("/add-data", cors()); // Handle preflight OPTIONS request
+
 app.post("/add-data", express.json(), (req, res) => {
     const data = req.body;
 
@@ -116,11 +116,11 @@ app.post("/add-data", express.json(), (req, res) => {
                         db.run(insertQuery, [data.author, data.content], (err) => {
                             if (err) {
                                 console.error("Error inserting data", err.message);
-                                resolve({ status: 409, message: `CONFLICT - It seems that the content already exists!!` });
-                            } else {
-                                console.log("Data inserted successfully");
-                                resolve({ status: 201, message: "done success" });
+                                reject(err);
+                                return;
                             }
+                            console.log("Data inserted successfully");
+                            resolve({ status: 201, message: "done success" });
                         });
                     });
                 });
@@ -146,6 +146,7 @@ app.post("/add-data", express.json(), (req, res) => {
             res.status(500).json({ message: "Internal Server Error" });
         });
 });
+
 
 app.use("/language", router);
 
