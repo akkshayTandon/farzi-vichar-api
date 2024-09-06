@@ -37,6 +37,8 @@ I even started a instagram page by the name [Farzi Vichar](https://www.instagram
  - Read [CONTRIBUTING.md](/docs/README.md) for guidelines.
 
 # TO_DO 
+ - [x] Add a database to the API to read and write user submitted quotes
+ - [ ] May add SQLite database for read-only, already available data
  - [x] Handle errors with better response
  - [ ] Add data in existing language(s) 
  - [ ] Add data for more languages
