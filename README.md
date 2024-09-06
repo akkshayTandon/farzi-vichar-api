@@ -14,14 +14,31 @@ I even started a instagram page by the name [Farzi Vichar](https://www.instagram
    - [Random Shayari Generator Extension](https://microsoftedge.microsoft.com/addons/detail/niaelonohcpmicnibpfegdkndgciphbe)
 
 # Usage
- - The method(s) you can use is only `GET`.
+ - The method(s) you can use are, only `GET` and `POST`.
  - The API is structured in a way that you will need to provide a language to the route, otherwise you will receive an error.
  - The route is such : `https://farzi-vichar-api.vercel.app/language/${language_name}`.
- - **Example**: [access hindi data](https://farzi-vichar-api.vercel.app/language/hindi). Similarily you can access data for  other languages also.
+ - **Example**: [access hindi data](https://farzi-vichar-api.vercel.app/language/hindi). Similarily you can access data for other languages also.
  - For getting the list of languages, use:
  
    ```bash
    https://farzi-vichar-api.vercel.app/language-list
+   ```
+ - For adding user submitted quotes, use:
+
+   ```bash
+   const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        "author": "Test Author",
+        "content": "Test Author content"
+      })
+   };
+   fetch('https://farzi-vichar-api.vercel.app/add-user-quote', options).then(response => response.json()).then(data => console.log(data)).catch((error) => {
+      console.log(error);
+    });
    ```
 
 # Structure
