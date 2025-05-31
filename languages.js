@@ -5,6 +5,6 @@
  */
 
 const languages_array =
-    ["hindi","english"];
+    ["hindi","english", "japanese"];
 
 export default languages_array;

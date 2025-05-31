@@ -1,5 +1,13 @@
 /**
  - This is the index.js, main entry point of the app;
+ - MAJOR ROUTES
+    - a home route, redirected to main website
+    - a language list route, returns all the existing languages that have data in the API
+    - a language sub-route, returns the data of a specific language further divided with options
+    - a add user quotes route for adding submitted quotes, one quote at a time
+    - a read user quotes route for reading the user submitted quotes, returns all the user quotes
+
+    NOTE: The user quotes routes uses vercel PostgreSQL database.
   
  */
 

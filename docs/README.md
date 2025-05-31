@@ -8,15 +8,15 @@
 
  1) `data` - This folder contains the data related to all the languages. This is where the actual shayari and quotes reside. 
  
-       - for adding a new language make a new folder inside the `data` folder as `data/${Your_language_name}`. 
-       - add the data file inside the folder as `data/${Your_language_name}/data.js`. 
+       - for adding a new language make a new folder inside the `data` folder as `data/${Your_Language_Name}`. 
+       - add the data file inside the folder as `data/${Your_Language_Name}/data.js`. 
        - NOTE: name the data file as 'data.js' only. 
        
- 2) `data_endpoints` - This folder contains the retriever functions, i.e., it is used to access the required language data from the data folder. This folder has seperate files for each language. <br>
+ 2) `data_endpoints` - This folder contains the retriever or the filetered quotes function. It return the filtered data for the language specified. It's usecase can be viewed in the `routes/route.js` file. <br>
  
      - for adding a retrieval file inside the folder, create file as `data_endpoints/${your_language_name.js}`. 
      
- 3) `routes` - This folder contains all the routes the API provides. It has a single file `route.js` which has all the routes, which are mainly: <br>
+ 3) `routes` - This folder contains all the routes the API provides. It has a single file `route.js` (**DO NOT CHANGE ANYTHING IN THIS FILE**) which has all the routes, which are mainly: <br>
     
      - */:language_name* -> returns all of the data for the language if no range is provided.
     
@@ -24,13 +24,13 @@
 
      - */:language_name/random* -> returns a single random data from the language specified. 
      
-  -  For contributing to this file, prefer reading the instructions in the file, but the brief is as follows:- <br>
+  <!-- -  For contributing to this file, prefer reading the instructions in the file, but the brief is as follows:- <br>
   
      - import the required retrieval file from the data_endpoints folder in route.js as:
         
         - `import your_langauge_name from "../data_endpoints/your_langauge_name.js";` <br>
         
-     - add the case statement in switch-case in each each route as instructed in the file.
+     - add the case statement in switch-case in each each route as instructed in the file. -->
        
  4) `languages.js` - contains an array of all the languages of which the data exists
      - add your language name to the languages_array in lowercase.
@@ -63,8 +63,8 @@
 
 - Make changes locally.
     - [Add your data](#adding-data)
-    - [Add the retriever function](#adding-retriever-function)
-    - [Add the Case Statements](#adding-case-statements-inside-route)
+    - [Add the language case statement in retriever/filter function file](#modifying-retriever-or-filter-function-file)
+    <!-- - [Add the Case Statements](#adding-case-statements-inside-route) -->
 
 - Commit your changes. Make sure to add a descriptive commit message.
 
@@ -120,66 +120,30 @@ Congratulations 🎉🎉**
      9. *isfeatured* : if the quotes is original written by some famous person, then "true" otherwise "false".
      10. *link* : if a direct link to the quote is available, be it text/atricle/website/video provide the link.
 
-### Adding retriever function 
+### Modifying retriever or filter function file 
 <hr>
 
- - Retriever functions are the functions responsible for returning a range of the specfied data using min_value and max_value.
- - For adding retriever function, go to the `data_endpoints` directory.
- - Create a file inside the directory as: 
-   - `data_endpoints/your_language_name.js`
- - Inside the `your_language_name.js` file, add the following code:
+ - Retriever or Filtered Quotes function is the function responsible for returning all or a range of the specfied data using min_value and max_value for a given language if exists.
+ - For adding retriever function, go to the `data_endpoints` directory and open `filter.js` file.
 
- ```bash
-  import your_language_name_data_array from "../data/Your_language_name/data.js";
+    - It uses a simple switch-case for filtering the data for a given language and a filter function to return the filtered data from the selected language data.
 
-const your_language_name = (min, max) => {
+    - Inside `data_endpoints/filter.js`, follow these steps and for more info [go to the file](../data_endpoints/filter.js) itslef:
+      - import the language data and then add the case statement:
 
-    const Data = your_language_name_data_array.filter((item) => {
-        if(Number(min) < your_language_name_data_array[0].id || Number(max) < your_language_name_data_array[0].id || Number(max) > your_language_name_data_array[your_language_name_data_array.length-1].id || Number(min) > your_language_name_data_array[your_language_name_data_array.length-1].id  ){
-            throw new Error("NOT FOUND");
-        }else if(min && max){
-            return item.id >= Number(min) && item.id <= Number(max);
-        } else if(min){
-            return item.id >= Number(min);
-        } else if(max){
-            return item.id <= Number(max);
-        } else{
-            return true;
-        }
-    });
-
-    return Data;
-}
-
- export default your_language_name;
- ```
-
-### Adding case statements inside route
-<hr>
-
- - As already mentioned above the `routes` folder contains all the routes the API provides. It has a single file route.js which provides access to all the language data based on the language name provided. 
-
- - It uses a simple switch-case for returning the correct language data.
-
- - Inside `routes/route.js`, follow these steps and for more info [go to the file](routes/route.js) itslef:
-   - first import the retirever function:
-   ```bash
-    import your_langauge_name from "../data_endpoints/your_langauge_name.js";
-   ```
-   - inside `router.get("/:language_name", ...)` in switch-case, add the following:
-     
-   ```bash
-     case "your_languge_name":
-                filteredData = your_language_name(min, max);
-                break;
-   ```
-   - inside `router.get("/:language_name/random", ...)` in switch-case, add the following:
-     
     ```bash
-     case "your_languge_name":
-                filteredData = your_language_name(min, max);
-                break;
-    ```
+     import language_data_array from "../data/Language/data.js";
+
+     // ...code
+     
+     /* inside getQuotes function */
+
+        case "your_languge_name_lowercase": 
+            quotes = language_data_array;
+            break;
+      
+      // ...code
+      ```
 
 # Important
  - If you are a beginner, I would recommend you to use VS Code. Also, [see this](https://www.youtube.com/playlist?list=PLpPVLI0A0OkLBWbcctmGxxF6VHWSQw1hi).
@@ -190,3 +154,4 @@ const your_language_name = (min, max) => {
     git push -u origin <branch>
    ```
  - Open the Pull Request or PR from the published branch.
+ - HAPPY CONTRIBUTING😀

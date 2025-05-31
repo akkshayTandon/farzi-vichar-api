@@ -2,8 +2,7 @@
 node_modules
 .env
 .vercel
-old-logic.js
-# data/User
+old-logic
 
 # Logs
 logs

@@ -42,20 +42,42 @@ I even started a instagram page by the name [Farzi Vichar](https://www.instagram
    ```
 
 # Structure
- - There are mainly three ways to access a language data:
-    - either full data of the language provided
-    - or a range of data from the language provided
-    - or a random data from the language provided
- - For accessing full data, use the route as : `https://farzi-vichar-api.vercel.app/language/${language_name}`
- - For accessing data in a range, use the route as : `https://farzi-vichar-api.vercel.app/language/${language_name}?min=${min_value}&max=${max_value}`
- - For accessing a random data, use the route as : `https://farzi-vichar-api.vercel.app/language/${language_name}/random`
+ - There are mainly two types of data in the API you can access:
+    - categorized by languages, the already added data in the API, read-only, modifiable by developers:
+      - either full data of the language provided
+        - For accessing full data, use the route as : `https://farzi-vichar-api.vercel.app/language/${language_name}`
+      - or a range of data from the language provided
+        - For accessing data in a range, use the route as : `https://farzi-vichar-api.vercel.app/language/${language_name}?min=${min_value}&max=${max_value}`
+      - or a random data from the language provided
+        - For accessing a random data, use the route as : `https://farzi-vichar-api.vercel.app/language/${language_name}/random`
+    - the user quotes, which are submitted by user:
+      - this does not goes into any categorized language as it is seperately handled. The usecase of this route is if someone wants their user to submit quotes from the client, so it is not just limited to the already      existing data.
+      - For adding user submitted quotes, use: `https://farzi-vichar-api.vercel.app/add-user-quote` with JSON body content.
+      ```bash
+      /* CLIENT SIDE CODE EXAMPLE */
+      /*-------------------------*/
 
+      const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        "author": "Test Author",
+        "content": "Test Author content"
+       })
+      };
+      fetch('https://farzi-vichar-api.vercel.app/add-user-quote', options).then(response => response.json()).then(data => console.log(data)).catch((error) => {
+      console.log(error);
+      });
+      ```
+      - For reading all the user submitted quotes, use: `https://farzi-vichar-api.vercel.app/get-user-quotes`
 # Contributing to the project
  - Read [CONTRIBUTING.md](/docs/README.md) for guidelines.
 
 # TO_DO 
  - [x] Add a database to the API to read and write user submitted quotes
- - [ ] May add SQLite database for read-only, already available data
+ - [ ] May move to SQLite database for read-only, already available data
  - [x] Handle errors with better response
- - [ ] Add data in existing language(s) 
+ - [x] Add data in existing language(s) 
  - [ ] Add data for more languages

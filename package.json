@@ -1,6 +1,6 @@
 {
-  "name": "farzi-vichar-shayari",
-  "version": "1.0.0",
+  "name": "farzi-vichar-api",
+  "version": "2.0.0",
   "description": "This package contains some shayari originally written by farzi vichar.",
   "main": "index.js",
   "type": "module",
@@ -12,7 +12,10 @@
     "poetry",
     "shayri",
     "shayari",
-    "quotes"
+    "quotes",
+    "quotes api",
+    "farzi vichar api",
+    "multi-language quotes api"
   ],
   "author": "Akkshay Tandon",
   "license": "MIT License",
