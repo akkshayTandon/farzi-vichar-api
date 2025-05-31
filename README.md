@@ -53,9 +53,9 @@ I even started a instagram page by the name [Farzi Vichar](https://www.instagram
     - the user quotes, which are submitted by user:
       - this does not goes into any categorized language as it is seperately handled. The usecase of this route is if someone wants their user to submit quotes from the client, so it is not just limited to the already      existing data.
       - For adding user submitted quotes, use: `https://farzi-vichar-api.vercel.app/add-user-quote` with JSON body content.
+
       ```bash
       /* CLIENT SIDE CODE EXAMPLE */
-      /*-------------------------*/
 
       const options = {
       method: 'POST',
