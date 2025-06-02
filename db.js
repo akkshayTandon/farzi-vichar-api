@@ -38,7 +38,7 @@ function writeToDatabase() {
     /* --------------END-------------*/
 
     return new Promise((resolve, reject) => {
-        const db = new sqlite.Database("./data/quotes.db", (err) => {
+        const db = new sqlite.Database("./quotes.db", (err) => {
             if (err) {
                 reject(err);
                 return;

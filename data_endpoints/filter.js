@@ -7,7 +7,6 @@
  - Kindly follow the instructions in comments.
  */
 
- 
 
 import pkg from 'sqlite3';
 const { sqlite3, verbose } = pkg;
@@ -49,7 +48,7 @@ const getQuotes = async (language) => {
     // let quotes;
 
     try {
-        const data = await readDataFromDatabase('./data/quotes.db', `${language}_quotes`);
+        const data = await readDataFromDatabase('./quotes.db', `${language}_quotes`);
         return data;
     } catch (error) {
         console.error('Error reading data:', error.message);
@@ -62,7 +61,7 @@ const getQuotes = async (language) => {
 export const filteredQuotesData = async (language, min, max) => {
     try {
         const quotes = await getQuotes(language);
-
+        // console.log(quotes)
         /* Function to filter on the basis of min and max value, in case provided */
         const filteredQuotes = quotes.filter((item) => {
             if (Number(min) < quotes[0].id || Number(max) < quotes[0].id || Number(max) > quotes[quotes.length - 1].id || Number(min) > quotes[quotes.length - 1].id) {

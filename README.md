@@ -73,6 +73,7 @@ I even started a instagram page by the name [Farzi Vichar](https://www.instagram
       });
       ```
       - For reading all the user submitted quotes, use: `https://farzi-vichar-api.vercel.app/get-user-quotes`
+
 # Contributing to the project
  - Read [CONTRIBUTING.md](/docs/README.md) for guidelines.
 
