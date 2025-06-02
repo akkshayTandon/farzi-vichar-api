@@ -48,7 +48,7 @@ const getQuotes = async (language) => {
     // let quotes;
 
     try {
-        const data = await readDataFromDatabase('./quotes.db', `${language}_quotes`);
+        const data = await readDataFromDatabase('quotes.db', `${language}_quotes`);
         return data;
     } catch (error) {
         console.error('Error reading data:', error.message);
