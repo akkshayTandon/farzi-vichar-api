@@ -35,8 +35,10 @@ router.get("/:language_name", (req, res) => {
     } else {
 
         filteredData = filteredQuotesData(l.toString(), min, max);
-
-        res.json(filteredData);
+        filteredData.then((data)=>{
+            // console.log(data)
+            res.json(data);
+        })
     }
 })
 
@@ -54,8 +56,10 @@ router.get("/:language_name/random", (req, res) => {
     } else {
 
         filteredData = filteredQuotesData(l.toString(), min, max);
-
-        res.json(filteredData[Math.floor(Math.random() * filteredData.length)]);
+        filteredData.then((data)=>{
+            // console.log(data);
+            res.json(data[Math.floor(Math.random() * data.length)]);
+        })
     }
 });
 

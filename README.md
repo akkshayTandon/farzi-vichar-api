@@ -51,7 +51,8 @@ I even started a instagram page by the name [Farzi Vichar](https://www.instagram
       - or a random data from the language provided
         - For accessing a random data, use the route as : `https://farzi-vichar-api.vercel.app/language/${language_name}/random`
     - the user quotes, which are submitted by user:
-      - this does not goes into any categorized language as it is seperately handled. The usecase of this route is if someone wants their user to submit quotes from the client, so it is not just limited to the already      existing data.
+      - this does not goes into any categorized language as it is seperately handled. The usecase of this route is if someone wants their user to submit quotes from the client, so it is not just limited to the already existing data.
+      - Now, we have saved the hassle for you and you don't need to worry about any code modifications, just call the API. Behind the scenes it uses the vercel PostgreSQL database.
       - For adding user submitted quotes, use: `https://farzi-vichar-api.vercel.app/add-user-quote` with JSON body content.
 
       ```bash
