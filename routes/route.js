@@ -36,7 +36,7 @@ router.get("/:language_name", (req, res) => {
 
         filteredData = filteredQuotesData(l.toString(), min, max);
         filteredData.then((data)=>{
-            // console.log(data)
+            console.log("language", data)
             res.json(data);
         })
     }
@@ -77,7 +77,7 @@ function readDataFromDatabase(databaseFile, tableName) {
                 return;
             }
 
-            // console.log('Connected to database');
+            console.log('Connected to database');
 
             const query = `SELECT * FROM ${tableName}`; // Modify to select specific columns if needed
 
@@ -95,6 +95,7 @@ function readDataFromDatabase(databaseFile, tableName) {
                     return;
                 }
                 // resolve("Connection closed");
+             console.log("closed connection");
             }); // Close the connection after the query finishes
         });
     });
@@ -106,6 +107,7 @@ const getQuotes = async (language) => {
 
     try {
         const data = await readDataFromDatabase('quotes.db', `${language}_quotes`);
+     console.log("getquotes", data);
         return data;
     } catch (error) {
         console.error('Error reading data:', error.message);
