@@ -3,9 +3,10 @@ node_modules
 .env
 .vercel
 old-logic
+# quotes.db
 
 # Ignoring raw data
-data/*/
+# data/*/
 # Keeps quotes.db tracked
 # !data/quotes.db  
 
