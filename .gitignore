@@ -3,6 +3,7 @@ node_modules
 .env
 .vercel
 old-logic
+# db.js
 # quotes.db
 
 # Ignoring raw data

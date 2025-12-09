@@ -1,6 +1,6 @@
 {
   "name": "farzi-vichar-api",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A multi-language quotes API.",
   "main": "index.js",
   "type": "module",

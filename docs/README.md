@@ -11,7 +11,7 @@
        - for [adding a new language data](#adding-data) make a new folder inside the `data` folder as `data/${Your_Language_Name}`. 
        - add the data file inside the folder as `data/${Your_Language_Name}/data.js`. 
        - NOTE: name the data file as 'data.js' only.
-       - then [update the database](#updating-the-database) `quotes.db`, an sqlite3 database. 
+       <!-- - then [update the database](#updating-the-database) `quotes.db`, an sqlite3 database.  -->
        
  2) `data_endpoints` - This folder contains the retriever or the filetered quotes function. It return the filtered data for the language specified. It's usecase can be viewed in the `routes/route.js` file.
       - there is a single file, `filter.js` , **DO NOT CHANGE ANYTHING IN THIS FILE**
@@ -29,7 +29,7 @@
        
  5) `index.js` - the entry point to this project, **DO NOT CHANGE ANYTHING IN THIS FILE**.
 
- 6) `db.js` - the file is used to update the database, anytime a new language is added to the API.
+ <!-- 6) `db.js` - the file is used to update the database, anytime a new language is added to the API. -->
 
 ## Installation and Making Changes
  For installation and local setup, follow these steps:
@@ -57,7 +57,7 @@
 
 - Make changes locally.
     - [Add your data](#adding-data)
-    - [Update the database](#updating-the-database)
+    <!-- - [Update the database](#updating-the-database) -->
     <!-- - [Add the language case statement in retriever/filter function file](#modifying-retriever-or-filter-function-file) -->
     <!-- - [Add the Case Statements](#adding-case-statements-inside-route) -->
 
@@ -118,7 +118,7 @@ Congratulations 🎉🎉**
   - add your language name to the languages_array in lowercase in the [language.js](../languages.js) file.
   - So, now we have the data but it needs to be added to the database to be available, follow the next section.
 
-### Updating the database
+<!-- ### Updating the database
 <hr>
 
  - It is a good practice to use database for data handling operations, that is the standard way. We use a sqlite3 database. The choice is so because didn't wanted the hassle of setting a large scale database for just a little task and hence went lightweight mode.
@@ -140,7 +140,7 @@ Congratulations 🎉🎉**
 
       // OUTPUT on console: "your_language_name data was added successfully."
     ```
-  - Congratulations 👏, the data is added to the database. You may further test it by making a request.
+  - Congratulations 👏, the data is added to the database. You may further test it by making a request. -->
 
 # Important
  - If you are a beginner, I would recommend you to use VS Code. Also, [see this](https://www.youtube.com/playlist?list=PLpPVLI0A0OkLBWbcctmGxxF6VHWSQw1hi).

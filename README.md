@@ -79,7 +79,8 @@ I even started a instagram page by the name [Farzi Vichar](https://www.instagram
 
 # TO_DO 
  - [x] Add a database to the API to read and write user submitted quotes
- - [ ] May move to SQLite database for read-only, already available data
  - [x] Handle errors with better response
  - [x] Add data in existing language(s) 
+ - [ ] Add API Security
+ - [ ] May move to data to a database for read-only, already available data
  - [ ] Add data for more languages
