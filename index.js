@@ -17,7 +17,7 @@ import express from "express";
 import 'dotenv/config';
 import cors from "cors";
 // import { sqlite3, verbose } from "sqlite3";
-import pkg from 'sqlite3';
+// import pkg from 'sqlite3';
 import { sql } from "@vercel/postgres";
 
 import router from "./routes/route.js";
@@ -26,8 +26,8 @@ import languages_array from "./languages.js";
 const port = process.env.PORT || 3000;
 const enviornment = process.env.NODE_ENV
 const app = express();
-const { sqlite3, verbose } = pkg;
-const sqlite = verbose();
+// const { sqlite3, verbose } = pkg;
+// const sqlite = verbose();
 
 app.use(cors({
     origin: "*",
